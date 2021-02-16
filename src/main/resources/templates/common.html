@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<th:block th:fragment="head">
+    <meta charset="UTF-8" />
+    <meta name="description" content="Message Board" />
+    <link rel="stylesheet" href="/common.css" />
+    <script src="/commmon.js"></script>
+</th:block>
+</head>
+<body>
+<th:block th:fragment="header">
+    <h1>Minimal Messaging System</h1>
+    <p>
+        <a href="/">Home</a>
+        <a onclick="pageRefresh();">Refresh</a>
+        <a target="_blank" href="/actuator">Actuator</a>
+        <a target="_blank" href="/swagger-ui/index.html">Swagger-UI</a>
+    </p>
+    <hr/>
+</th:block>
+<th:block th:fragment="footer">
+    <hr/>
+    <p><span th:text="${fetchTime}"></span></p>
+</th:block>
+</body>
+</html>

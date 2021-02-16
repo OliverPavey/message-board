@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="common :: head"></th:block>
+</head>
+<body>
+<th:block th:include="common :: header"></th:block>
+
+<h1>Message Board - <span th:text="${board.name}"></span></h1>
+
+<ul><th:block th:each="message : ${messages}">
+    <li><span th:text="${message.message}"></span></li>
+</th:block></ul>
+
+<p><span th:text="${messages.size()}">0</span> messages.</p>
+
+<th:block th:include="common :: footer"></th:block>
+</body>
+</html>
