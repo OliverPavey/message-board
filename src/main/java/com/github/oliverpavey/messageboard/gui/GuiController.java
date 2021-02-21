@@ -6,7 +6,6 @@ import com.github.oliverpavey.messageboard.dto.MessageDto;
 import com.github.oliverpavey.messageboard.repo.BoardRepo;
 import com.github.oliverpavey.messageboard.repo.MessageRepo;
 import com.google.common.collect.Lists;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,14 +23,18 @@ public class GuiController {
 
     final SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS");
 
-    @Autowired
-    BoardRepo boardRepo;
+    final BoardRepo boardRepo;
+    final MessageRepo messageRepo;
+    final ConversionService conversionService;
 
-    @Autowired
-    MessageRepo messageRepo;
+    public GuiController(BoardRepo boardRepo,
+                         MessageRepo messageRepo,
+                         ConversionService conversionService) {
 
-    @Autowired
-    ConversionService conversionService;
+        this.boardRepo = boardRepo;
+        this.messageRepo = messageRepo;
+        this.conversionService = conversionService;
+    }
 
     List<BoardDto> boards() {
         return Lists.newArrayList(boardRepo.findAll()).stream()

@@ -4,7 +4,6 @@ import com.github.oliverpavey.messageboard.dao.Board;
 import com.github.oliverpavey.messageboard.dto.BoardDto;
 import com.github.oliverpavey.messageboard.repo.BoardRepo;
 import com.google.common.collect.Lists;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +18,15 @@ import java.util.stream.Collectors;
 @IncludeInSwaggerUi
 public class ApiControllerV1Board {
 
-    @Autowired
+    ConversionService conversionService;
     BoardRepo boardRepo;
 
-    @Autowired
-    ConversionService conversionService;
+    public ApiControllerV1Board(ConversionService conversionService,
+                                BoardRepo boardRepo) {
+
+        this.conversionService = conversionService;
+        this.boardRepo = boardRepo;
+    }
 
     @GetMapping("/boards")
     List<BoardDto> getBoards() {

@@ -4,7 +4,6 @@ import com.github.oliverpavey.messageboard.dao.Message;
 import com.github.oliverpavey.messageboard.dto.MessageDto;
 import com.github.oliverpavey.messageboard.repo.BoardRepo;
 import com.github.oliverpavey.messageboard.repo.MessageRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,14 +18,18 @@ import java.util.stream.Collectors;
 @IncludeInSwaggerUi
 public class ApiControllerV1Message {
 
-    @Autowired
+    ConversionService conversionService;
     BoardRepo boardRepo;
-
-    @Autowired
     MessageRepo messageRepo;
 
-    @Autowired
-    ConversionService conversionService;
+    public ApiControllerV1Message(ConversionService conversionService,
+                                  BoardRepo boardRepo,
+                                  MessageRepo messageRepo) {
+
+        this.conversionService = conversionService;
+        this.boardRepo = boardRepo;
+        this.messageRepo = messageRepo;
+    }
 
     @GetMapping("/board/{boardId}/messages")
     List<MessageDto> getMessages(@PathVariable long boardId) {
